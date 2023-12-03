@@ -11,7 +11,7 @@ export async function connectDB() {
 
     console.log(db.connection.db.databaseName);
     conn.isConnected = db.connections[0].readyState
-} 
+}
 
 connection.on('connected', () => {
     console.log('Moongose is connection');
