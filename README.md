@@ -1,4 +1,4 @@
-<div styles={{display:"flex", flexDirection:"colums"}}>
+<div style={{ display: "flex", flexDirection: "column" }}>
 ## CRUD BÁSICO 🖐️
 
 Este es un proyecto básico de CRUD (Crear, Leer, Actualizar, Eliminar) con funcionalidades adicionales. A continuación, se describen los pasos necesarios para ejecutar el proyecto en otro equipo.
