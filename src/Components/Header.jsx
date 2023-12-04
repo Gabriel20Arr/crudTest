@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 
-
+// Componente de encabezado que muestra un enlace al inicio y un botón para crear un nuevo usuario
 function Header() {
   return (
      <div className='flex justify-between p-2 mx-auto bg-blue-600 text-white'>

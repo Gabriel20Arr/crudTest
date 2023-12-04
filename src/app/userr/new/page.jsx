@@ -5,126 +5,133 @@ import { useRouter, useParams } from 'next/navigation'
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
 
-function page() {
-    const [ newUser, setNewUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-        location: ''
-    })
+// Componente de formulario para crear o actualizar usuarios
+function Page() {
+  const [ newUser, setNewUser] = useState({
+      name: '',
+      email: '',
+      password: '',
+      location: ''
+  })
     
-    const router = useRouter()
-    const params = useParams()
+  const router = useRouter()
+  const params = useParams()
 
-const getUser = async () => {
-  try {
-    const res = await axios.get(`../../api/users/${params.id}`);
-    const data = res.data;
+  // Función para obtener los detalles del usuario si se está editando
+  const getUser = async () => {
+    try {
+      const res = await axios.get(`../../api/users/${params.id}`);
+      const data = res.data;
 
-    setNewUser({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      location: data.location,
-    });
-  } catch (error) {
-    console.error("Error al obtener el usuario:", error);
+      setNewUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        location: data.location,
+      });
+    } catch (error) {
+      console.error("Error al obtener el usuario:", error);
+    }
+  };
+
+  // Función para crear un nuevo usuario
+  const createUsers = async () => {
+      try {
+          const res = await axios.post("../../api/users", 
+              JSON.stringify(newUser),{
+              headers: {
+                  "Content-Type": "application/json"
+              }
+      })
+
+      const data = await res.data;
+      // si esta correcto lo redirecciona
+      if(res.status === 200){
+          router.push('/')
+          router.refresh() 
+      }
+
+      } catch (error) {
+          console.log(error);
+      }
   }
-};
+
+   // Función para actualizar un usuario existente
+  const updateUser = async () => {
+      try {
+          const res = await axios.put(`../../api/users/${params.id}`,
+              JSON.stringify(newUser),{
+                  headers:{ 
+                      "Content-Type": "application/json"
+                  }
+              })
+
+          const date = await res.date;
+          router.push('/')
+          router.refresh()
+      } catch (error) {
+          console.log(error);            
+      }
+  }
 
 
-    const createUsers = async () => {
-        try {
-            const res = await axios.post("../../api/users", 
-                JSON.stringify(newUser),{
-                headers: {
-                    "Content-Type": "application/json"
-                }
-        })
+  // Función para manejar la eliminación de un usuario
+  const handleDelete = async () => {
+      Swal.fire({
+      title: '',
+      text: 'Estas seguro de eliminar?',
+      position: "center",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'si',
+      confirmButtonColor: '#3498db',
 
-        const data = await res.data;
-        // si esta correcto lo redirecciona
-        if(res.status === 200){
-            router.push('/')
-            router.refresh() 
-        }
+      denyButtonText: 'Cancelar',
+      denyButtonColor: '#e74c3c'
+      }).then(async (result) => {
+          if (result.isConfirmed) {
+              const resData = await axios.delete(`../../api/users/${params.id}`)
 
-        } catch (error) {
-            console.log(error);
-        }
-    }
+              router.push('/')
+              router.refresh()
+          } else if (result.isDenied) {
+              router.push('/userr/new')
+          }
+      })
+  }
 
-    const updateUser = async () => {
-        try {
-            const res = await axios.put(`../../api/users/${params.id}`,
-                JSON.stringify(newUser),{
-                    headers:{ 
-                        "Content-Type": "application/json"
-                    }
-                })
+  // Función para manejar el envío del formulario
+  const handleSubmit = async (e) => {
+      e.preventDefault();
 
-            const date = await res.date;
-            router.push('/')
-            router.refresh()
-        } catch (error) {
-            console.log(error);            
-        }
-    }
+      if (!newUser.name || !newUser.email || !newUser.password || !newUser.location) {
+      // Agrega una validación para asegurarte de que todos los campos estén completos
+      Swal.fire({
+          title: 'Error',
+          text: 'Por favor, completa todos los campos.',
+          icon: 'error',
+          confirmButtonColor: '#3498db'
+      });
+      } else {
+      if (!params.id) {
+          createUsers();
+      } else {
+          updateUser();
+      }
+      }
+  };
+  
+   // Función para manejar los cambios en los campos del formulario
+  const handlerChange = (e) => {
+      setNewUser({...newUser, [e.target.name]: e.target.value})
+  }
 
-
-    const handleDelete = async () => {
-        Swal.fire({
-        title: '',
-        text: 'Estas seguro de eliminar?',
-        position: "center",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'si',
-        confirmButtonColor: '#3498db',
-
-        denyButtonText: 'Cancelar',
-        denyButtonColor: '#e74c3c'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                const resData = await axios.delete(`../../api/users/${params.id}`)
-
-                router.push('/')
-                router.refresh()
-            } else if (result.isDenied) {
-                router.push('/userr/new')
-            }
-        })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!newUser.name || !newUser.email || !newUser.password || !newUser.location) {
-        // Agrega una validación para asegurarte de que todos los campos estén completos
-        Swal.fire({
-            title: 'Error',
-            text: 'Por favor, completa todos los campos.',
-            icon: 'error',
-            confirmButtonColor: '#3498db'
-        });
-        } else {
-        if (!params.id) {
-            createUsers();
-        } else {
-            updateUser();
-        }
-        }
-    };
-    
-    const handlerChange = (e) => {
-        setNewUser({...newUser, [e.target.name]: e.target.value})
-    }
-
-    useEffect(() => {
-        if(params.id) {
-            getUser()
-        }
-    }, [])
+  // Efecto secundario para obtener los detalles del usuario al cargar la página
+  useEffect(() => {
+      if(params.id) {
+          getUser()
+      }
+  }, [getUser, params.id])
     
   return (
     <div  
@@ -177,4 +184,4 @@ const getUser = async () => {
     </div>
   )
 }
-export default page;
+export default Page;
