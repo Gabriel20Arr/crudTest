@@ -1,41 +1,32 @@
-CRUD BÁSICO
+#CRUD BÁSICO
 Este es un proyecto básico de CRUD (Crear, Leer, Actualizar, Eliminar) con funcionalidades adicionales. A continuación, se describen los pasos necesarios para ejecutar el proyecto en otro equipo.
 
-Pasos para Ejecutar el Proyecto
-Clonar el Repositorio
-bash
-Copy code
-git clone https://github.com/TuUsuario/crud-basico.git
-cd crud-basico
-Instalar Dependencias
-bash
-Copy code
-npm install
-Configurar el Entorno
-Crear un archivo .env en el directorio raíz y configurar variables de entorno si es necesario.
+#Pasos para Ejecutar el Proyecto
+1- Clonar el Repositorio
+2- git clone https://github.com/TuUsuario/crud-basico.git
+3- Instalar Dependencias
+4-npm install
+5- Configurar el Entorno
+ -Crear un archivo .env en el directorio raíz y configurar variables de entorno si es necesario. (URLMONGODB: "mongodb+srv://adminGabriel:qwertyuiop@cluster-crud-next.hkwr7zw.mongodb.net/DB_crud_test?retryWrites=true&w=majority")
 
-Ejecutar en Modo de Desarrollo
-bash
-Copy code
-npm run dev
-Esto iniciará el servidor de desarrollo en http://localhost:3000.
+6- Ejecutar en Modo de Desarrollo
+ -npm run dev
+ -Esto iniciará el servidor de desarrollo en http://localhost:3000.
 
-Construir para Producción
-bash
-Copy code
-npm run build
-Ejecutar en Modo de Producción
-bash
-Copy code
-npm start
-Comandos Utilizados
+7-Construir para Producción
+ -npm run build
+8- Ejecutar en Modo de Producción
+ -npm start
+
+#Comandos Utilizados
 git clone: Clona el repositorio.
 cd: Cambia al directorio del proyecto.
 npm install: Instala las dependencias del proyecto.
 npm run dev: Inicia el servidor de desarrollo.
 npm run build: Construye la aplicación para producción.
 npm start: Inicia la aplicación en modo de producción.
-Funcionalidades Adicionales
+
+#Funcionalidades Adicionales
 Eliminar: Se ha implementado la funcionalidad de eliminar registros.
 Formulario de Agregar/Editar: Se incorporó un formulario para agregar y editar contenido.
 Estilo con Tailwind CSS: Se utilizó la biblioteca de estilo Tailwind CSS para el diseño.
