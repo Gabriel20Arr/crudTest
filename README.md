@@ -11,6 +11,8 @@ Este es un proyecto básico de CRUD (Crear, Leer, Actualizar, Eliminar) con func
  -Crear un archivo .env en el directorio raíz y configurar variables de entorno si es necesario. (URLMONGODB: "mongodb+srv://adminGabriel:qwertyuiop@cluster-crud-next.hkwr7zw.mongodb.net/DB_crud_test?retryWrites=true&w=majority")
 
 6- Ejecutar en Modo de Desarrollo<br/>
+-Entrar a la rama master
+-git chekout master
  -npm run dev<br/>
  -Esto iniciará el servidor de desarrollo en http://localhost:3000.<br/>
 7-Construir para Producción<br/>
