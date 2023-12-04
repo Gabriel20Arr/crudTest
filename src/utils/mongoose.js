@@ -20,7 +20,3 @@ connection.on('connected', () => {
 connection.on('error', (err) => {
     console.log('moongose connection error', err);
 })
-
-// connection.on('disconnected', () => {
-//     console.log('Mongoose is disconnected');
-// });

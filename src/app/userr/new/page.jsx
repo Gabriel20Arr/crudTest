@@ -76,7 +76,7 @@ const getUser = async () => {
         Swal.fire({
         title: '',
         text: 'Estas seguro de eliminar?',
-        position: "top",
+        position: "center",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'si',
@@ -117,7 +117,8 @@ const getUser = async () => {
     
   return (
     <div  
-        className='h-screen 
+        className='
+            h-screen
             flex 
             flex-col
             justify-center 
@@ -126,7 +127,7 @@ const getUser = async () => {
             bg-gray-900
         '
     >
-            <h1 className='p-2 text-white text-lg border-b-2 '>
+            <h1 className='p-2 text-white font-bold text-lg border-b-2 '>
                 {
                     !params.id ? "Crear usuario" : "Acualizar usuario"
                 }
@@ -137,6 +138,16 @@ const getUser = async () => {
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='email' name='email' placeholder='Correo' value={newUser.email}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='password' placeholder='Contraseña' value={newUser.password}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}/>
+            {/* <select onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}>
+                <option disabled value={''}>Ubicacion</option>
+                <option>Argentina</option>
+                <option>Venezuela</option>
+                <option>Chile</option>
+                <option>Uruguay</option>
+                <option>Colombia</option>
+                <option>Mexico</option>
+                <option>Otros</option>
+            </select> */}
 
             <button type='submit' className='p-2 rounded-lg bg-green-500 text-white'> 
                 {
