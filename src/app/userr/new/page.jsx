@@ -21,8 +21,6 @@ const getUser = async () => {
     const res = await axios.get(`../../api/users/${params.id}`);
     const data = res.data;
 
-    console.log(data);
-
     setNewUser({
       name: data.name,
       email: data.email,
@@ -50,7 +48,6 @@ const getUser = async () => {
             router.push('/')
             router.refresh() 
         }
-        console.log(data);
 
         } catch (error) {
             console.log(error);
@@ -129,18 +126,16 @@ const getUser = async () => {
             bg-gray-900
         '
     >
-    {/* <spam className='bg-gray-800 text-black'>Cancelar</spam> */}
-        
             <h1 className='p-2 text-white text-lg border-b-2 '>
                 {
                     !params.id ? "Crear usuario" : "Acualizar usuario"
                 }
             </h1>
 
-        <form className='grid grid-cols-2 gap-2' onSubmit={handlerSubmit}>
+        <form className='grid grid-cols-2 gap-2 text-white' onSubmit={handlerSubmit}>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='name' placeholder='Nombre' value={newUser.name}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='email' name='email' placeholder='Correo' value={newUser.email}/>
-            <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='password' name='password' placeholder='Contraseña' value={newUser.password}/>
+            <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='password' placeholder='Contraseña' value={newUser.password}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}/>
 
             <button type='submit' className='p-2 rounded-lg bg-green-500 text-white'> 

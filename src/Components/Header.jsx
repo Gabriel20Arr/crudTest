@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 function Header() {
   return (
-     <div className='flex justify-between p-2 mx-auto mb-10  rounded bg-gray-500 text-white'>
+     <div className='flex justify-between p-2 mx-auto mb-10  bg-gray-500 text-white'>
         <Link href={'/'}>
-          <h1 className='hevor:cursor-pointer border-b'>
+          <h1 className='hover:cursor-pointer border-b font-bold text-lg'>
               CRUD Prueba
           </h1>
         </Link>

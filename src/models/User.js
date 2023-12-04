@@ -26,5 +26,5 @@ const userSchema = new Schema({
     timestamps: true,
 })
 
-// model.Task: de no existir crearlo 
+// model.User: de no existir crearlo 
 export default models.User || model('User', userSchema)
