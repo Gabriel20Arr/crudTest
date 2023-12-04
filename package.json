@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "sass": "^1.69.5",
     "swal": "^0.1.0",
-    "sweetalert2": "^11.10.1"
+    "sweetalert2": "^11.10.1",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@types/react": "18.2.41",

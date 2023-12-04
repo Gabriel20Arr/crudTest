@@ -96,14 +96,25 @@ const getUser = async () => {
         })
     }
 
-    const handlerSubmit = async (e) => {
-        e.preventDefault()
-        if(!params.id){
-            await createUsers()
-        }else{
-            updateUser()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!newUser.name || !newUser.email || !newUser.password || !newUser.location) {
+        // Agrega una validación para asegurarte de que todos los campos estén completos
+        Swal.fire({
+            title: 'Error',
+            text: 'Por favor, completa todos los campos.',
+            icon: 'error',
+            confirmButtonColor: '#3498db'
+        });
+        } else {
+        if (!params.id) {
+            createUsers();
+        } else {
+            updateUser();
         }
-    }
+        }
+    };
     
     const handlerChange = (e) => {
         setNewUser({...newUser, [e.target.name]: e.target.value})
@@ -133,12 +144,12 @@ const getUser = async () => {
                 }
             </h1>
 
-        <form className='grid grid-cols-2 gap-2 text-white' onSubmit={handlerSubmit}>
+        <form className='grid grid-cols-2 gap-2 text-white' onSubmit={handleSubmit}>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='name' placeholder='Nombre' value={newUser.name}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='email' name='email' placeholder='Correo' value={newUser.email}/>
             <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='password' placeholder='Contraseña' value={newUser.password}/>
-            <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}/>
-            {/* <select onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}>
+            {/* <input onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}/> */}
+            <select onChange={handlerChange} className='p-4 rounded-lg my-4 bg-gray-700'  type='text' name='location' placeholder='Ubicacion' value={newUser.location}>
                 <option disabled value={''}>Ubicacion</option>
                 <option>Argentina</option>
                 <option>Venezuela</option>
@@ -147,7 +158,7 @@ const getUser = async () => {
                 <option>Colombia</option>
                 <option>Mexico</option>
                 <option>Otros</option>
-            </select> */}
+            </select>
 
             <button type='submit' className='p-2 rounded-lg bg-green-500 text-white'> 
                 {
