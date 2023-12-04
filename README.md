@@ -1,3 +1,4 @@
+<div styles={{display:"flex", flexDirection:"colums"}}>
 ## CRUD BÁSICO 🖐️
 
 Este es un proyecto básico de CRUD (Crear, Leer, Actualizar, Eliminar) con funcionalidades adicionales. A continuación, se describen los pasos necesarios para ejecutar el proyecto en otro equipo.
@@ -41,3 +42,4 @@ El código ha sido comentado para explicar la lógica detrás de cada sección y
 
 # Deploy del Proyecto
 El proyecto se puede desplegar en plataformas como Vercel, Netlify, Heroku, entre otras. Configura la plataforma de tu elección siguiendo sus instrucciones específicas.
+</div>
